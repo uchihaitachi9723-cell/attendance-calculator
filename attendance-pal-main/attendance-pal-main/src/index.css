@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 45 30% 97%;
+    --foreground: 200 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 15%;
+
+    --primary: 175 60% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 30% 92%;
+    --secondary-foreground: 200 25% 25%;
+
+    --muted: 45 20% 90%;
+    --muted-foreground: 200 15% 45%;
+
+    --accent: 15 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 150 60% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 35 95% 55%;
+    --warning-foreground: 35 95% 15%;
+
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 88%;
+    --input: 200 20% 88%;
+    --ring: 175 60% 40%;
+
+    --radius: 0.75rem;
+
+    --gradient-primary: linear-gradient(135deg, hsl(175 60% 40%), hsl(185 55% 50%));
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(45 30% 98%));
+    --gradient-bg: linear-gradient(180deg, hsl(45 30% 97%), hsl(45 25% 94%));
+
+    --shadow-sm: 0 1px 2px 0 hsl(200 25% 15% / 0.05);
+    --shadow-md: 0 4px 6px -1px hsl(200 25% 15% / 0.08), 0 2px 4px -2px hsl(200 25% 15% / 0.05);
+    --shadow-lg: 0 10px 25px -3px hsl(200 25% 15% / 0.1), 0 4px 6px -4px hsl(200 25% 15% / 0.05);
+    --shadow-glow: 0 0 20px hsl(175 60% 40% / 0.2);
+  }
+
+  .dark {
+    --background: 200 25% 10%;
+    --foreground: 45 20% 95%;
+
+    --card: 200 25% 14%;
+    --card-foreground: 45 20% 95%;
+
+    --popover: 200 25% 14%;
+    --popover-foreground: 45 20% 95%;
+
+    --primary: 175 60% 50%;
+    --primary-foreground: 200 25% 10%;
+
+    --secondary: 200 20% 20%;
+    --secondary-foreground: 45 20% 90%;
+
+    --muted: 200 20% 18%;
+    --muted-foreground: 200 15% 60%;
+
+    --accent: 15 85% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 150 55% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 35 90% 50%;
+    --warning-foreground: 35 95% 10%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 20% 22%;
+    --input: 200 20% 22%;
+    --ring: 175 60% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background: var(--gradient-bg);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .card-elevated {
+    @apply bg-card rounded-xl border border-border;
+    box-shadow: var(--shadow-lg);
+    background: var(--gradient-card);
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground;
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent;
+    @apply transition-all duration-200 ease-out;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .input-field:hover {
+    @apply border-primary/50;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold text-primary-foreground;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:scale-[1.02] active:scale-[0.98];
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .btn-primary:hover {
+    box-shadow: var(--shadow-lg), var(--shadow-glow);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg font-medium bg-secondary text-secondary-foreground;
+    @apply border border-border;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-muted active:scale-[0.98];
+  }
+
+  .result-card {
+    @apply p-6 rounded-xl border;
+    @apply transition-all duration-300 ease-out;
+    animation: slideUp 0.4s ease-out;
+  }
+
+  .result-success {
+    @apply bg-success/10 border-success/30 text-success;
+  }
+
+  .result-warning {
+    @apply bg-warning/10 border-warning/40 text-warning-foreground;
+  }
+
+  .result-error {
+    @apply bg-destructive/10 border-destructive/30 text-destructive;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out;
+}
