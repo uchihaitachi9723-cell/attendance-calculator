@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 8px 0;
+    }
+    button {
+      padding: 10px 15px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Attendance Calculator</h2>
+
+    <input type="number" id="total" placeholder="Total Classes">
+    <input type="number" id="attended" placeholder="Classes Attended">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const total = document.getElementById("total").value;
+      const attended = document.getElementById("attended").value;
+
+      if (total === "" || attended === "" || total == 0) {
+        document.getElementById("result").innerText = "Please enter valid numbers";
+        return;
+      }
+
+      const percent = (attended / total) * 100;
+      document.getElementById("result").innerText =
+        "Attendance: " + percent.toFixed(2) + "%";
+    }
+  </script>
+
+</body>
+</html>
